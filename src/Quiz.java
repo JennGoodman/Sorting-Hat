@@ -67,6 +67,27 @@ public class Quiz {
     }
     
     public void saveShowResults() {
-        // To do
+        resetCurrentQuestion();
+        Question q = getNextQuestion();
+        
+        switch (q.getType()) {
+            case 1: // Short Answer
+                Object[] a = q.getSelectedAnswer();
+                try {
+                    int age = Integer.parseInt(a[0].toString());
+                }
+                catch (NumberFormatException e) {
+                    
+                }
+                break;
+            case 2: // Drop Down
+                break;
+            case 3: // True/False
+                break;
+            case 4: // Multiple Choice
+                break;
+            case 5: // Scale
+        }
+        
     }
 }
