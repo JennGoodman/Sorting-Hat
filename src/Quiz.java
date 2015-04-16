@@ -53,6 +53,10 @@ public class Quiz {
                         mType = 5; 
                         rows = 5; 
                         break;
+                    case "6": // Multiple Choice
+                        mType = 6;
+                        rows = 4;
+                        break;
                 }
                 
                 if (rows > 0) {
