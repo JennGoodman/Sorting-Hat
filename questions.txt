@@ -1,6 +1,8 @@
 1,What is your name?
 2,Country?
 1,Age?
-3,A Sample Question,T,Ravenclaw,3,F,Hufflepuff,3
-4,A Sample Question,Sample Answer,Ravenclaw,3,Sample Answer 2,Hufflepuff,2,Sample Answer 3,Griffindor,3,Sample Answer 4,Slytherin,3
-5,A Sample Question,1,Hufflepuff,2,2,Hufflepuff,2,3,Hufflepuff,2,4,Hufflepuff,2,5,Hufflepuff,2
+3,A Sample Question,T,r,3,F,h,3
+4,A Sample Question,Sample Answer,r,3,Sample Answer 2,h,2,Sample Answer 3,g,3,Sample Answer 4,s,3
+5,A Sample Question,1,h,1,2,h,2,3,h,3,4,h,4,5,h,5
+4,What do you think is your biggest strength?,Enthusiasm,g,2,Intelligence,r,2,Ambititious,s,2,Selflessness,h,2
+4,Most people’s first impression of me would be that I am…,Loud/Passionate,g,2,Quirky/Eccentric,r,2,Warm/Approachable,h,2,Snobby/Cold,s,2
