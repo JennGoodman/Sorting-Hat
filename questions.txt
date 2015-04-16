@@ -8,3 +8,6 @@
 5,How much do you value selflessness?,1,h,1,2,h,2,3,h,3,4,h,4,5,h,5
 5,How much do you value passion?,1,g,1,2,g,2,3,g,3,4,g,4,5,g,5
 5,How much do you value leadership?,1,s,1,2,s,2,3,s,3,4,s,4,5,s,5
+4,Which discipline would you rather study?,Potions,s,2,Transfiguration,g,2,Herbology,h,2,Everything,r,2
+4,Which hobby would you prefer?,Socializing,h,2,Athletics,g,2,Reading,r,2,Student Government,s,2
+6,Which house would you prefer to be sorted into?,Gryffindor,g,1,Slytherin,s,1,Hufflepuff,h,1,Ravenclaw,r,1
