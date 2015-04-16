@@ -1,1 +1,6 @@
-1,A Sample Question,Sample Answer,Ravenclaw,3
+1,What is your name?
+2,Country?
+1,Age?
+3,A Sample Question,T,Ravenclaw,3,F,Hufflepuff,3
+4,A Sample Question,Sample Answer,Ravenclaw,3,Sample Answer 2,Hufflepuff,2,Sample Answer 3,Griffindor,3,Sample Answer 4,Slytherin,3
+5,A Sample Question,1,Hufflepuff,2,2,Hufflepuff,2,3,Hufflepuff,2,4,Hufflepuff,2,5,Hufflepuff,2
