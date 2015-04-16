@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import static java.lang.Integer.getInteger;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +14,7 @@ public class Quiz {
     
     // Fields //
     
-    private ArrayList<Object> questions;
+    private ArrayList<Question> questions = new ArrayList();
     private int currentQuestion;
     private final String path;
 
@@ -32,14 +31,29 @@ public class Quiz {
             Object[][] answers = new Object[0][0];
 
             while ((foo = reader.readLine()) != null) {
+                
                 bar = foo.split(",");
-
-                switch (Integer.getInteger(bar[0])) {
-                    case 1: break;              // Short Answer
-                    case 2: break;              // Drop Down
-                    case 3: rows = 2; break;    // True/False
-                    case 4: rows = 4; break;    // Multiple Choice
-                    case 5: rows = 5; break; }   // Scale
+                int mType = 0;
+                
+                switch (bar[0]) {
+                    case "1": // Short Answer
+                        mType = 1;
+                        break;
+                    case "2": // Drop Down
+                        mType = 2;
+                        break;
+                    case "3": // True/False
+                        mType = 3; rows = 2;
+                        break;
+                    case "4": // Multiple Choice
+                        mType = 4;
+                        rows = 4;
+                        break;
+                    case "5": // Scale
+                        mType = 5; 
+                        rows = 5; 
+                        break;
+                }
                 
                 if (rows > 0) {
                     int max = bar.length;
@@ -49,7 +63,7 @@ public class Quiz {
                         for (int k = 0; k < 3 ; k++)
                             if (i < max) answers[j][k] = bar[i++];
                 }
-                questions.add(new Question(getInteger(bar[0]), bar[1], answers));
+                questions.add(new Question(mType, bar[1], answers));
             }
             reader.close();
         }
