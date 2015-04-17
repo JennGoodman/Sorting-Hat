@@ -1,11 +1,14 @@
 /*
- * 
+ * Administrator Class
+ *
  */
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Formatter;
 
 public class Administrator
@@ -21,13 +24,13 @@ public class Administrator
      * Opens the participant results file found in path and populates some 
      * of the values needed for getResults.
      * @param path
-     * @return 
+     * @throws java.io.IOException
      */
     
-    public Administrator(String path) throws IOException
+    public Administrator(String path) throws IOException  
     {
         this.path = path;
-        String line = null;
+        String line;
         
         try(BufferedReader br = new BufferedReader(new FileReader(path)))
         {
@@ -54,8 +57,7 @@ public class Administrator
 
         sb.append("Total Number of Participants: \t");
         sb.append(numParticipants);
-        sb.append("\n");
-        sb.append("------------------------------------------------\n");
+        sb.append("\n------------------------------------------------\n");
         sb.append("Number of Participants Per House: \n\n");
         for(int i = 0; i < houseList.length; i++)
         {
@@ -72,8 +74,7 @@ public class Administrator
         sb.append("------------------------------------------------\n");
         sb.append("Average Age of Participants: \t");
         sb.append(getAvgAge());
-        sb.append("\n");
-        sb.append("------------------------------------------------\n");
+        sb.append("\n------------------------------------------------\n");
         sb.append("Country Counts: \n\n");
         sb.append(getCountryList());
         sb.append("------------------------------------------------\n");        
@@ -228,7 +229,14 @@ public class Administrator
             }         
         }
         //alphabetize?
-        //Collections.sort(countryList);
+        Collections.sort(countryList, new Comparator<Object>()
+        {
+            @Override
+            public int compare(Object o1, Object o2)
+            {
+                return o1.getCountryName().compareTo(o2.getCountryName());
+            }
+        });
         
         //create columned table
         for(int k = 0; k < countryList.size(); k++)
