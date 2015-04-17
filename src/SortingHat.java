@@ -33,7 +33,7 @@ public class SortingHat extends JFrame{
 		
 		//Waiting for submit button to be clicked
 		int cnt=0;
-		while(participantPanel.submitClicked()==false){
+		while(participantPanel.buttonClicked==false){
 			if(cnt<1){
 				System.out.println("");
 				cnt++;
@@ -57,19 +57,19 @@ public class SortingHat extends JFrame{
 			case 3: // True/False
 				questionPanel = new TrueFalseQuestionPanel(question);
 				setContentPane(questionPanel);
-	            	break;
-	        	case 4: // Multiple Choice
+	            break;
+	        case 4: // Multiple Choice
 	        	questionPanel = new MultiChoicePanel(question, false);
 	        	setContentPane(questionPanel);
-	            	break;
-	        	case 5: // Scale
+	            break;
+	        case 5: // Scale
 	        	questionPanel = new ScaleQuestionPanel(question);
 	        	setContentPane(questionPanel); 
-	        	 break;
-	        	case 6: // Tiebreak multiple choice
+	            break;
+	        case 6: // Tiebreak multiple choice
 	        	questionPanel = new MultiChoicePanel(question, true);
 	        	setContentPane(questionPanel);
-	        	 break;
+	            break;
 			}
 			revalidate(); //sets screen to this next question panel
 			
@@ -85,7 +85,6 @@ public class SortingHat extends JFrame{
 			//checks for next question
 			question = quiz.getNextQuestion();
 		}
-		
 	}
 	
 	public static void main(String[] args) throws IOException{
