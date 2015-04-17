@@ -228,7 +228,7 @@ public class Administrator
                 countryList.add(country);
             }         
         }
-        //alphabetize?
+        /*alphabetize?
         Collections.sort(countryList, new Comparator<Object>()
         {
             @Override
@@ -236,7 +236,7 @@ public class Administrator
             {
                 return o1.getCountryName().compareTo(o2.getCountryName());
             }
-        });
+        });*/
         
         //create columned table
         for(int k = 0; k < countryList.size(); k++)
