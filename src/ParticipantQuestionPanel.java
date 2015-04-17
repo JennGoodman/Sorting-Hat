@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -21,7 +20,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerListModel;
 
-public class ParticipantQuestionPanel extends JPanel {
+public class ParticipantQuestionPanel extends QuestionPanel {
 	private JTextField nameField;
 	private JComboBox<String> countriesBox;
 	private boolean submitClicked;
@@ -124,26 +123,27 @@ public class ParticipantQuestionPanel extends JPanel {
 		
 	}
 	
+	//Tell GUI program to change to next screen in SortingHat class
 	public boolean submitClicked(){
 		return submitClicked;
 	}
 	
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			submitClicked=true;
 			name = nameField.getText(); //sets name variable as entered name
 			country = countriesBox.getSelectedItem().toString(); //sets country to selected item
 			
 			//calculate age using calculateAge method
-			age = calculateAge((int)yearSpinner.getValue(),
-					(int)monthSpinner.getValue(),
-					(int)daySpinner.getValue());
+			age = calculateAge((Integer)yearSpinner.getValue(),
+					(Integer)monthSpinner.getValue(),
+					(Integer)daySpinner.getValue());
 			
 			StringBuilder sb = new StringBuilder();
 			sb.append(name + ",");
 			sb.append(age + ",");
 			sb.append(country);
 			System.out.println(sb.toString());
+			buttonClicked= true; //this is inherited member variable from parent class
 		}
 	}
 	
@@ -184,6 +184,4 @@ public class ParticipantQuestionPanel extends JPanel {
 		scr.close();
 		return countries;
 	}
-}	
-		
-		
+}
