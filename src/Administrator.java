@@ -15,7 +15,7 @@ public class Administrator
     private ArrayList<String[]> records = new ArrayList();
     private final String[] houseList = {"Griffindor", "Slytherin", "Ravenclaw", 
             "Hufflepuff"};
-    //private final String path;
+    private final String path;
     
     /**
      * Opens the participant results file found in path and populates some 
@@ -24,13 +24,12 @@ public class Administrator
      * @return 
      */
     
-    //public Administrator(String path) throws IOException
-    public Administrator() throws IOException
+    public Administrator(String path) throws IOException
     {
-        //this.path = path;
+        this.path = path;
         String line = null;
         
-        try(BufferedReader br = new BufferedReader(new FileReader("newfile")))
+        try(BufferedReader br = new BufferedReader(new FileReader(path)))
         {
             while((line = br.readLine()) != null)
             {
@@ -60,14 +59,14 @@ public class Administrator
         sb.append("Number of Participants Per House: \n\n");
         for(int i = 0; i < houseList.length; i++)
         {
-            fm.format("\t %-20s %-20d \n", houseList[i], 
+            fm.format("\t %-20s %4d \n", houseList[i], 
                     getTotalOneHouse(houseList[i]));
         }
         sb.append("------------------------------------------------\n");
         sb.append("Percent of Average Per House: \n\n");
         for(int i = 0; i < houseList.length; i++)
         {
-            fm.format("\t %-20s %-20d \n", houseList[i], 
+            fm.format("\t %-20s %4d%% \n", houseList[i], 
                     getAvgOneHouse(houseList[i]));
         }
         sb.append("------------------------------------------------\n");
@@ -77,6 +76,7 @@ public class Administrator
         sb.append("------------------------------------------------\n");
         sb.append("Country Counts: \n\n");
         sb.append(getCountryList());
+        sb.append("------------------------------------------------\n");        
         
         fm.close();
         return sb.toString();
@@ -159,7 +159,7 @@ public class Administrator
     
     private int getAvgOneHouse(String house)
     {
-        return (int)getTotalOneHouse(house)/numParticipants;   //consider rounding
+        return (int)((100 *getTotalOneHouse(house)/numParticipants) + 0.5);
     }
     
    /**
@@ -234,7 +234,7 @@ public class Administrator
         for(int k = 0; k < countryList.size(); k++)
         {
             Object[] country = countryList.get(k);
-            fm.format("\t %-20s %-20d \n", country[0], country[1]);
+            fm.format("\t %-20s %4d \n", country[0], country[1]);
         }
         fm.close();
         return sb.toString();
