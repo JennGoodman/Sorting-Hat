@@ -6,13 +6,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Formatter;
 
 public class Administrator
 {
     private int avgAge;
     private int numParticipants = 0;
     private ArrayList<String[]> records = new ArrayList();
-    private final String path;
+    private final String[] houseList = {"Griffindor", "Slytherin", "Ravenclaw", 
+            "Hufflepuff"};
+    //private final String path;
     
     /**
      * Opens the participant results file found in path and populates some 
@@ -21,12 +24,13 @@ public class Administrator
      * @return 
      */
     
-    public Administrator(String path) throws IOException
+    //public Administrator(String path) throws IOException
+    public Administrator() throws IOException
     {
-        this.path = path;
+        //this.path = path;
         String line = null;
         
-        try(BufferedReader br = new BufferedReader(new FileReader(path)))
+        try(BufferedReader br = new BufferedReader(new FileReader("newfile")))
         {
             while((line = br.readLine()) != null)
             {
@@ -35,6 +39,7 @@ public class Administrator
                 numParticipants++;
             }
             br.close();
+            setAvgAge();
         }
     }
     
@@ -44,58 +49,88 @@ public class Administrator
      */        
             
     public String getResults()
-    {          
-        return null;  //string builder
+    {
+        StringBuilder sb = new StringBuilder();
+        Formatter fm = new Formatter(sb);
+
+        sb.append("Total Number of Participants: \t");
+        sb.append(numParticipants);
+        sb.append("\n");
+        sb.append("------------------------------------------------\n");
+        sb.append("Number of Participants Per House: \n\n");
+        for(int i = 0; i < houseList.length; i++)
+        {
+            fm.format("\t %-20s %-20d \n", houseList[i], 
+                    getTotalOneHouse(houseList[i]));
+        }
+        sb.append("------------------------------------------------\n");
+        sb.append("Percent of Average Per House: \n\n");
+        for(int i = 0; i < houseList.length; i++)
+        {
+            fm.format("\t %-20s %-20d \n", houseList[i], 
+                    getAvgOneHouse(houseList[i]));
+        }
+        sb.append("------------------------------------------------\n");
+        sb.append("Average Age of Participants: \t");
+        sb.append(getAvgAge());
+        sb.append("\n");
+        sb.append("------------------------------------------------\n");
+        sb.append("Country Counts: \n\n");
+        sb.append(getCountryList());
+        
+        fm.close();
+        return sb.toString();
     }
     
     /**
-     * 
+     * Returns the total number of participants for all houses.
      * @return 
      */
     
-    private int[] getTotals() //all houses
+    private int[] getTotalAllHouses()
     {
-        int[] totals = new int[4];
+        int[] totalParticipants = new int[4];
+        int index = 0;
         
-        int max = 0, 
-            curr,
-            index = 0, 
-            griffindor_count = 0, 
-            slytherin_count = 0, 
-            ravenclaw_count = 0, 
-            hufflepuff_count = 0;
-        
-        //find winning house
+        //compute winning house
         for(int i = 0; i < records.size(); i++)
         {
-            String[] temp = records.get(i); 
+            int winningScore = 0;
+            String[] line = records.get(i);
+            
             for(int j = 3; j < 7; j++)
             {
-                curr = Integer.parseInt(temp[j]);
-                if(curr > max)
+                int currScore = Integer.parseInt(line[j]);
+                
+                if(currScore > winningScore)
                 {
-                    max = curr;
+                    winningScore = currScore;
                     index = j;
                 }
             }
-            //inc winning house
+            
+            //increment winning house
             switch (index)
             {
-                case 3: 
-                    totals[0] = ++griffindor_count;
+                case 3:
+                    //griffindor count
+                    totalParticipants[0] = ++totalParticipants[0]; 
                     break;
                 case 4:
-                    totals[1] = ++slytherin_count;
+                    //slytherin count
+                    totalParticipants[1] = ++totalParticipants[1]; 
                     break;
                 case 5:
-                    totals[2] = ++ravenclaw_count;
+                    //ravenclaw count
+                    totalParticipants[2] = ++totalParticipants[2];  
                     break;
                 case 6: 
-                    totals[3] = ++hufflepuff_count;
+                    //hufflepuff count
+                    totalParticipants[3] = ++totalParticipants[3]; 
                     break;
             }
         }
-        return totals;
+        return totalParticipants;
     }
     
     /**
@@ -104,23 +139,16 @@ public class Administrator
      * @return 
      */
     
-    private int getTotal(String house)  //specific house
+    private int getTotalOneHouse(String house)
     {
-        int[] totals = getTotals();
+        int[] totalParticipants = getTotalAllHouses();
         
-        
-        
-        
-        if(house.equalsIgnoreCase("griffindor"))
-            return totals[0];
-        else if(house.equalsIgnoreCase("slytherin"))
-            return totals[1];
-        else if(house.equalsIgnoreCase("ravenclaw")) 
-            return totals[2]; 
-        else if(house.equalsIgnoreCase("hufflepuff")) 
-            return totals[3];
-        else
-            return -1; //invalid argument    
+        for(int i = 0; i < houseList.length; i++)
+        {
+            if(house.equalsIgnoreCase(houseList[i]))
+                return totalParticipants[i];
+        }
+        return -1; //invalid house
     }
     
     /**
@@ -129,9 +157,37 @@ public class Administrator
      * @return 
      */
     
-    private int getAvg(String house)
+    private int getAvgOneHouse(String house)
     {
-        return (int)getTotal(house)/numParticipants;   
+        return (int)getTotalOneHouse(house)/numParticipants;   //consider rounding
+    }
+    
+   /**
+     * Returns the average age of the participants.
+     * @return 
+     */
+    
+    private int getAvgAge()
+    {
+        return avgAge;
+    }
+    /**
+     * Calculates the average age of the participants.
+     * @return 
+     */
+    
+    private void setAvgAge()
+    {
+        ArrayList<Object[]> ageList = new ArrayList();
+        int sumAge = 0;
+
+        for(int i = 0; i < records.size(); i++)
+        {
+            String[] line = records.get(i); 
+            int currAge = Integer.parseInt(line[1]);
+            sumAge += currAge;        
+        }
+        this.avgAge = (int)sumAge/numParticipants;
     }
     
     /**
@@ -142,12 +198,46 @@ public class Administrator
     
     private String getCountryList()
     {
-        return null;
-    }
-    
-    //Results file structure
-    //name, age, country, griffindor_count, slytherin_count, ravenclaw_count, 
-    //hufflepuff_count
+        StringBuilder sb = new StringBuilder();
+        Formatter fm = new Formatter(sb);
+        ArrayList<Object[]> countryList = new ArrayList();
 
-    
+        //build country list
+        for(int i = 0; i < records.size(); i++)
+        {
+            String[] line = records.get(i); 
+            boolean flag = false;
+            
+            //increment country already in list
+            for(int j = 0; j < countryList.size(); j++)
+            {
+                Object[] country = countryList.get(j); 
+                if(country[0].equals(line[2]))    
+                {                    
+                    int country_count = (int)country[1];
+                    country[1] = ++country_count;
+                    flag = true;
+                }
+            }
+            
+            //add new country to list
+            if(!flag)    
+            {
+                Object[] country = {line[2], (Integer)1};
+                countryList.add(country);
+            }         
+        }
+        //alphabetize?
+        //Collections.sort(countryList);
+        
+        //create columned table
+        for(int k = 0; k < countryList.size(); k++)
+        {
+            Object[] country = countryList.get(k);
+            fm.format("\t %-20s %-20d \n", country[0], country[1]);
+        }
+        fm.close();
+        return sb.toString();
+    }
+  
 }
