@@ -90,13 +90,6 @@ public class Quiz {
         
         switch (q.getType()) {
             case 1: // Short Answer
-                Object[] a = q.getSelectedAnswer();
-                try {
-                    int age = Integer.parseInt(a[0].toString());
-                }
-                catch (NumberFormatException e) {
-                    
-                }
                 break;
             case 2: // Drop Down
                 break;
