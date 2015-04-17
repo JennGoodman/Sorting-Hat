@@ -23,8 +23,8 @@ public class Administrator
     /**
      * Opens the participant results file found in path and populates some 
      * of the values needed for getResults.
-     * @param path
-     * @throws java.io.IOException
+     * @param path The path to the file.
+     * @throws java.io.IOException Signals that an I/O exception has occurred.
      */
     
     public Administrator(String path) throws IOException  
@@ -46,8 +46,9 @@ public class Administrator
     }
     
     /**
-     * Calculates the averages and totals from the participant data file.
-     * @return 
+     * Accesses all private methods and formats the output to the participant 
+     * data file.
+     * @return A string containing all the compiled information.
      */        
             
     public String getResults()
@@ -75,7 +76,7 @@ public class Administrator
         sb.append("Average Age of Participants: \t");
         sb.append(getAvgAge());
         sb.append("\n------------------------------------------------\n");
-        sb.append("Country Counts: \n\n");
+        sb.append("Country of Origin: \n\n");
         sb.append(getCountryList());
         sb.append("------------------------------------------------\n");        
         
@@ -84,8 +85,8 @@ public class Administrator
     }
     
     /**
-     * Returns the total number of participants for all houses.
-     * @return 
+     * Returns the total number of participants for each house.
+     * @return An array containing the number of participants for each house.
      */
     
     private int[] getTotalAllHouses()
@@ -135,9 +136,9 @@ public class Administrator
     }
     
     /**
-     * Returns the total number of participants for specified house.
-     * @param house
-     * @return 
+     * Returns the total number of participants for a specified house.
+     * @param house The specified house.
+     * @return The number of participants.
      */
     
     private int getTotalOneHouse(String house)
@@ -153,9 +154,9 @@ public class Administrator
     }
     
     /**
-     * Returns the average number of participants for the specified house.
-     * @param house
-     * @return 
+     * Returns the percentage of participants for a specified house.
+     * @param house The specified house.
+     * @return The percentage of participants.
      */
     
     private int getAvgOneHouse(String house)
@@ -165,7 +166,7 @@ public class Administrator
     
    /**
      * Returns the average age of the participants.
-     * @return 
+     * @return The average age of the participants.
      */
     
     private int getAvgAge()
@@ -173,8 +174,7 @@ public class Administrator
         return avgAge;
     }
     /**
-     * Calculates the average age of the participants.
-     * @return 
+     * Calculates the average age of the participants. 
      */
     
     private void setAvgAge()
@@ -194,7 +194,7 @@ public class Administrator
     /**
      * Returns a string of the countries found in the participant data and 
      * their appearance counts.
-     * @return 
+     * @return A string containing all the compiled information.
      */
     
     private String getCountryList()
@@ -228,15 +228,22 @@ public class Administrator
                 countryList.add(country);
             }         
         }
-        /*alphabetize?
-        Collections.sort(countryList, new Comparator<Object>()
+        
+        //sort list of countries
+        Collections.sort(countryList, new Comparator<Object[]>()
         {
             @Override
-            public int compare(Object o1, Object o2)
-            {
-                return o1.getCountryName().compareTo(o2.getCountryName());
+            public int compare(Object[] o1, Object[] o2)
+            {                
+                //alphabetize country names
+            //return String.valueOf(o1[0]).compareTo(String.valueOf(o2[0]));
+                
+                //rank by number of participants
+                if((int)o1[1] < (int)o2[1])
+                    return 1;
+                return -1;
             }
-        });*/
+        });
         
         //create columned table
         for(int k = 0; k < countryList.size(); k++)
@@ -247,5 +254,4 @@ public class Administrator
         fm.close();
         return sb.toString();
     }
-  
 }
