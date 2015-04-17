@@ -1,6 +1,6 @@
-1,What is your name?
-2,Country?
-1,Age?
+1,name
+2,country
+1,age
 3,A Sample True/False Question,T,r,3,F,h,3
 4,What do you think is your biggest strength?,Enthusiasm,g,2,Intelligence,r,2,Ambitious,s,2,Selflessness,h,2
 4,Most people’s first impression of me would be that I am…,Loud/Passionate,g,2,Quirky/Eccentric,r,2,Warm/Approachable,h,2,Snobby/Cold,s,2
