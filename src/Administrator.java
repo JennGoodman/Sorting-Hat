@@ -36,7 +36,7 @@ public class Administrator
         {
             while((line = br.readLine()) != null)
             {
-                String[] temp = line.split(", ");
+                String[] temp = line.split(",");
                 records.add(temp);
                 numParticipants++;
             }
