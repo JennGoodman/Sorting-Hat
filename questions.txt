@@ -10,5 +10,5 @@
 4,Which discipline would you rather study?,Potions,s,2,Transfiguration,g,2,Herbology,h,2,Everything,r,2
 4,Which hobby would you prefer?,Socializing,h,2,Athletics,g,2,Reading,r,2,Student Government,s,2
 3,True or False: I am competitive person,True,g,2,False,h,2
-3,True or False: People could describe me as quirky or eccentric,True,r,2,False,s,2
+3,True or False: People could describe me as unique or different,True,r,2,False,s,2
 6,Which house would you prefer to be sorted into?,Gryffindor,g,1,Slytherin,s,1,Hufflepuff,h,1,Ravenclaw,r,1
