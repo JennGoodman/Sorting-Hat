@@ -127,7 +127,8 @@ public class MultiChoicePanel extends QuestionPanel{
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			//this is inherited member variable from inherited parent class
-			buttonClicked = true;
+		System.out.println("BUTTON CLICKED");	
+                    buttonClicked = true;
 		}
 	}
 }
