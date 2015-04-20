@@ -33,30 +33,50 @@ public class SortingHat extends JFrame{
 		
 		//Waiting for submit button to be clicked
 		int cnt=0;
+                
 		while(participantPanel.buttonClicked==false){
 			if(cnt<1){
-				System.out.println("");
+				System.out.println(".");
 				cnt++;
+                                
 			}
+                        System.out.print("");
 		}
+                
+                
+                age = Integer.toString(participantPanel.getAge());
+                name = participantPanel.getName();
+                country = participantPanel.getCountry();
 
 		/*--------------Begin Quiz Questions-------------*/
-		
+		System.out.println("TEST");
 		Quiz quiz = new Quiz("questions.txt");
 		Question question = quiz.getNextQuestion();
-		QuestionPanel questionPanel = null;
-		//while there are more questions
+                question.setSelectedAnswer(name, 0);
+                question = quiz.getNextQuestion();
+                question.setSelectedAnswer(country, 0);
+                question = quiz.getNextQuestion();
+                question.setSelectedAnswer(age, 0);
 		
+                question = quiz.getNextQuestion();
+                QuestionPanel questionPanel = null;
+		//while there are more questions
+                
+                
+                
 		while(question != null){
-			int questionType = question.getType();
+			
+                    System.out.println("WHILE LOOP TEST");
+                    int questionType = question.getType();
 			
 			//load question panel depending on type of question
 			
-			//Multiple Choice
-			switch (questionType) {
-			case 3: // True/False
-//				questionPanel = new TrueFalseQuestionPanel(question);
-//				setContentPane(questionPanel);
+			
+		switch (questionType) {
+                   
+                    case 3: // True/False
+				questionPanel = new TrueFalseQuestionPanel(question);
+				setContentPane(questionPanel);
 	            break;
 	        case 4: // Multiple Choice
 	        	questionPanel = new MultiChoicePanel(question, false);
@@ -69,6 +89,7 @@ public class SortingHat extends JFrame{
 	        case 6: // Tiebreak multiple choice
 	        	questionPanel = new MultiChoicePanel(question, true);
 	        	setContentPane(questionPanel);
+                        System.out.println("OUT?");
 	            break;
 			}
 			revalidate(); //sets screen to this next question panel
@@ -76,15 +97,16 @@ public class SortingHat extends JFrame{
 			//waits for button to be clicked
 			cnt = 0;
 			while(questionPanel.buttonClicked == false){
-				if(cnt<1){
-					System.out.println("");
-					cnt++;
-				}
+				//if(cnt<1){
+					System.out.print("");
+					//t++;
+				//}
 			}
 			
 			//checks for next question
 			question = quiz.getNextQuestion();
 		}
+		
 	}
 	
 	public static void main(String[] args) throws IOException{

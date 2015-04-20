@@ -125,11 +125,14 @@ public class ParticipantQuestionPanel extends QuestionPanel {
 	
 	//Tell GUI program to change to next screen in SortingHat class
 	public boolean submitClicked(){
+            System.out.println("BUTTON CLICKED");
 		return submitClicked;
 	}
 	
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
+                    
+                        
 			name = nameField.getText(); //sets name variable as entered name
 			country = countriesBox.getSelectedItem().toString(); //sets country to selected item
 			
@@ -184,4 +187,15 @@ public class ParticipantQuestionPanel extends QuestionPanel {
 		scr.close();
 		return countries;
 	}
-}
+        public int getAge(){
+                return age;
+        }
+        public String getCountry(){
+                return country;
+        }
+        public String getName(){
+                return name;
+        }
+}	
+		
+
