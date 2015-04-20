@@ -77,7 +77,6 @@ public class Quiz {
     // Methods //
     
     public Question getNextQuestion() {
-        System.out.println("Size: " + questions.size() + " / CurrentQuestion: " + currentQuestion);
         if (questions.size() == currentQuestion) return null;
         return (Question)questions.get(currentQuestion++);
     }
