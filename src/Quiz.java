@@ -97,7 +97,8 @@ public class Quiz {
         // Get all the question values
         while ((q = getNextQuestion()) != null) {
             answer = q.getSelectedAnswer();
-            mString = (String)answer[0]; 
+            mString = (String)answer[0];
+            System.out.println("mString: " + mString);
 
             switch (q.getType()) {
                 case 1: // Short Answer
@@ -105,7 +106,7 @@ public class Quiz {
                     else str[0] = mString;
                     break;
                 case 2: // Drop Down
-                    str[3] = mString;
+                    str[2] = mString;
                     break;
                 case 3: case 4: case 5: // Valued Questions
                     switch (mString) {
