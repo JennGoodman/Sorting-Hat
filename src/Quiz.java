@@ -16,13 +16,13 @@ public class Quiz {
     // Fields //
     
     private ArrayList<Question> questions = new ArrayList();
-    private int currentQuestion;
+    private int currentQuestion = 0;
     private int g, h, r, s;
 
     // Constructors //
     
     Quiz (String path) throws IOException {
-        currentQuestion = g = h = r = s = 0;
+        g = h = r = s = 0;
         
         // Open File
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -77,6 +77,7 @@ public class Quiz {
     // Methods //
     
     public Question getNextQuestion() {
+        System.out.println("Size: " + questions.size() + " / CurrentQuestion: " + currentQuestion);
         if (questions.size() == currentQuestion) return null;
         return (Question)questions.get(currentQuestion++);
     }
