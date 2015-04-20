@@ -55,8 +55,8 @@ public class SortingHat extends JFrame{
 			//Multiple Choice
 			switch (questionType) {
 			case 3: // True/False
-//				questionPanel = new TrueFalseQuestionPanel(question);
-//				setContentPane(questionPanel);
+				questionPanel = new TrueFalseQuestionPanel(question);
+				setContentPane(questionPanel);
 	            break;
 	        case 4: // Multiple Choice
 	        	questionPanel = new MultiChoicePanel(question, false);
@@ -85,6 +85,7 @@ public class SortingHat extends JFrame{
 			//checks for next question
 			question = quiz.getNextQuestion();
 		}
+		
 	}
 	
 	public static void main(String[] args) throws IOException{
