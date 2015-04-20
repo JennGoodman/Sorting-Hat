@@ -1,13 +1,14 @@
 1,name
 2,country
 1,age
-3,A Sample True/False Question,T,r,3,F,h,3
 4,What do you think is your biggest strength?,Enthusiasm,g,2,Intelligence,r,2,Ambitious,s,2,Selflessness,h,2
 4,Most people’s first impression of me would be that I am…,Loud/Passionate,g,2,Quirky/Eccentric,r,2,Warm/Approachable,h,2,Snobby/Cold,s,2
 5,How much do you value intelligence?,1,r,1,2,r,2,3,r,3,4,r,4,5,r,5
 5,How much do you value selflessness?,1,h,1,2,h,2,3,h,3,4,h,4,5,h,5
 5,How much do you value passion?,1,g,1,2,g,2,3,g,3,4,g,4,5,g,5
 5,How much do you value leadership?,1,s,1,2,s,2,3,s,3,4,s,4,5,s,5
+4,How would you describe your typical decision-making?,I weigh all possible outcomes before acting,s,2,I tend to act quickly and decisively in a lot of matters,g,2
+3,I often think of myself before others,True,r,2,False,h,2
 4,Which discipline would you rather study?,Potions,s,2,Transfiguration,g,2,Herbology,h,2,Everything,r,2
 4,Which hobby would you prefer?,Socializing,h,2,Athletics,g,2,Reading,r,2,Student Government,s,2
 6,Which house would you prefer to be sorted into?,Gryffindor,g,1,Slytherin,s,1,Hufflepuff,h,1,Ravenclaw,r,1
