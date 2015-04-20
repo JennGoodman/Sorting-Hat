@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -84,7 +85,7 @@ public class Quiz {
         currentQuestion = 0;
     }
     
-    public String saveShowResults() {
+    public String saveShowResults() throws IOException {
         resetCurrentQuestion();
         int g = 0;
         int h = 0;
@@ -122,6 +123,13 @@ public class Quiz {
                             break;
                     }
             }
+        }
+        
+        try (FileWriter out = new FileWriter("results.txt", true)) {
+            String outString = line[0] + "," + line[1] + "," + line[2] + "," + g + "," + s + "," + r + "," + h;
+            out.write(outString);
+            out.flush();
+            out.close();
         }
         
         String win;
