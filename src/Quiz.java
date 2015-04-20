@@ -17,12 +17,12 @@ public class Quiz {
     
     private ArrayList<Question> questions = new ArrayList();
     private int currentQuestion;
-    private final String path;
+    private int g, h, r, s;
 
     // Constructors //
     
     Quiz (String path) throws IOException {
-        this.path = path;
+        g = h = r = s = 0;
         
         // Open File
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -86,58 +86,73 @@ public class Quiz {
     }
     
     public String saveShowResults() throws IOException {
-        resetCurrentQuestion();
-        int g = 0;
-        int h = 0;
-        int r = 0;
-        int s = 0;
-        StringBuilder sb = new StringBuilder();
-        String[] line = new String[3];
+        String[] str = new String[3];
         Question q;
+        String special = "";
+        String mString;
+        Object[] answer;
         
+        resetCurrentQuestion();
+        
+        // Get all the question values
         while ((q = getNextQuestion()) != null) {
-            Object[] selectedAnswer = q.getSelectedAnswer();
-            String mString = (String)selectedAnswer[0]; 
+            answer = q.getSelectedAnswer();
+            mString = (String)answer[0]; 
 
             switch (q.getType()) {
                 case 1: // Short Answer
-                    if (q.getQuestion().equalsIgnoreCase("age")) line[1] = mString; 
-                    else line[0] = mString;
+                    if (q.getQuestion().equalsIgnoreCase("age")) str[1] = mString; 
+                    else str[0] = mString;
                     break;
                 case 2: // Drop Down
-                    line[3] = mString;
+                    str[3] = mString;
                     break;
                 case 3: case 4: case 5: // Valued Questions
                     switch (mString) {
-                        case "g":
-                            g += (int)selectedAnswer[1];
+                        case "g": g += (int)answer[1];
                             break;
-                        case "h":
-                            h += (int)selectedAnswer[1];
+                        case "h": h += (int)answer[1];
                             break;
-                        case "r":
-                            r += (int)selectedAnswer[1];
+                        case "r": r += (int)answer[1];
                             break;
-                        case "s":
-                            s += (int)selectedAnswer[1];
+                        case "s": s += (int)answer[1];
                             break;
                     }
+                    break;
+                case 6:
+                    special = (String)answer[0];
+                    break;
             }
         }
         
+        // Append the line to the file
         try (FileWriter out = new FileWriter("results.txt", true)) {
-            String outString = line[0] + "," + line[1] + "," + line[2] + "," + g + "," + s + "," + r + "," + h;
+            String outString = str[0] + "," + str[1] + "," + str[2] + "," + g + "," + s + "," + r + "," + h;
             out.write(outString);
             out.flush();
             out.close();
         }
         
+        // Calculate Winner!
         String win;
-        if (g > r && g > h && g > s) win = "Griffindor!";
-        else if (r > h && r > s && r > g) win = "Ravenclaw!";
-        else if (h > s && h > g && h > r) win = "Hufflepuff!";
-        else win = "Slytherin!";
+        while ((win = winner()) == null) {
+            switch (special) {
+                case "g": g++; break;
+                case "h": h++; break;
+                case "r": r++; break;
+                case "s": s++; break;
+            }
+        }
         
-        return (line[0] + " has been sorted into " + win);
+        // Return winner string
+        return (str[0] + " has been sorted into " + win);
+    }
+    
+    private String winner() {
+        if (g > r && g > h && g > s) return "Gryffindor!";
+        else if (r > h && r > s && r > g) return "Ravenclaw!";
+        else if (h > s && h > g && h > r) return "Hufflepuff!";
+        else if (s > h && s > g && s > r) return "Slytherin!";
+        return null;
     }
 }
