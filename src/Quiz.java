@@ -22,7 +22,7 @@ public class Quiz {
     // Constructors //
     
     Quiz (String path) throws IOException {
-        g = h = r = s = 0;
+        currentQuestion = g = h = r = s = 0;
         
         // Open File
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
