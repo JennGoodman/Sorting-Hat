@@ -42,7 +42,7 @@ public class Question {
     }
     
     public void setSelectedAnswer (String answer, int value) {
-        selectedAnswer = answer;
+        this.selectedAnswer = answer;
         this.value = value;
     }
 }
