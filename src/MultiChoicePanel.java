@@ -7,6 +7,7 @@ import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,6 +41,7 @@ public class MultiChoicePanel extends QuestionPanel{
 		/*-----------------------Buttons----------------------*/
 		//A button
 		JButton aButton = new JButton("A");
+                aButton.setMargin(new Insets(0, 0, 0, 0));
 		springLayout.putConstraint(SpringLayout.WEST, questionLabel, 0, SpringLayout.WEST, aButton);
 		springLayout.putConstraint(SpringLayout.WEST, aButton, 34, SpringLayout.WEST, this);
 		aButton.addActionListener(new ButtonListener());
@@ -47,6 +49,7 @@ public class MultiChoicePanel extends QuestionPanel{
 		
 		//B button
 		JButton bButton = new JButton("B");
+                bButton.setMargin(new Insets(0, 0, 0, 0));
 		springLayout.putConstraint(SpringLayout.WEST, bButton, 34, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, bButton, -159, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, aButton, -15, SpringLayout.NORTH, bButton);
@@ -55,6 +58,7 @@ public class MultiChoicePanel extends QuestionPanel{
 		
 		//C button
 		JButton cButton = new JButton("C");
+                cButton.setMargin(new Insets(0, 0, 0, 0));
 		springLayout.putConstraint(SpringLayout.NORTH, cButton, 15, SpringLayout.SOUTH, bButton);
 		springLayout.putConstraint(SpringLayout.WEST, cButton, 34, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, cButton, -115, SpringLayout.SOUTH, this);
@@ -63,6 +67,7 @@ public class MultiChoicePanel extends QuestionPanel{
 		
 		//D button
 		JButton dButton = new JButton("D");
+                dButton.setMargin(new Insets(0, 0, 0, 0));
 		springLayout.putConstraint(SpringLayout.NORTH, dButton, 14, SpringLayout.SOUTH, cButton);
 		springLayout.putConstraint(SpringLayout.WEST, dButton, 34, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, dButton, -72, SpringLayout.SOUTH, this);
