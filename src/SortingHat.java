@@ -178,9 +178,6 @@ public class SortingHat extends JFrame{
         
         public void adminDialog() throws IOException{
             Administrator admin = new Administrator("results.txt");
-            
-            System.out.println(admin.getResults());
-            
             setVisible(false);
             JOptionPane optionPane = new JOptionPane();
             optionPane.showMessageDialog(this,
