@@ -18,6 +18,7 @@ public class Quiz {
     private ArrayList<Question> questions = new ArrayList();
     private int currentQuestion = 0;
     private int g, h, r, s;
+    protected String winner;
 
     // Constructors //
     
@@ -149,11 +150,27 @@ public class Quiz {
         return (str[0] + " has been sorted into " + win);
     }
     
+    public String getWinner(){
+        return winner;
+    }
+    
     private String winner() {
-        if (g > r && g > h && g > s) return "Gryffindor!";
-        else if (r > h && r > s && r > g) return "Ravenclaw!";
-        else if (h > s && h > g && h > r) return "Hufflepuff!";
-        else if (s > h && s > g && s > r) return "Slytherin!";
+        if (g > r && g > h && g > s){
+            winner = "Gryffindor!";
+            return "Gryffindor!";
+        }
+        else if (r > h && r > s && r > g){
+            winner = "Ravenclaw!";
+            return "Ravenclaw!";
+        }
+        else if (h > s && h > g && h > r){
+            winner = "Hufflepuff!";
+            return "Hufflepuff!";
+        }
+        else if (s > h && s > g && s > r){
+            winner = "Slytherin!";
+            return "Slytherin!";
+        }
         return null;
     }
 }

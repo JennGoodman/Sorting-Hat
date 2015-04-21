@@ -11,9 +11,10 @@ import java.awt.event.ActionEvent;
 
 
 public class TrueFalseQuestionPanel extends QuestionPanel{
-
-        
+        private int value;
+        private String house;
         private Object[][] answers;
+        private boolean buttonClicked;
         
 	public TrueFalseQuestionPanel(Question question){
 		setBackground(Color.BLACK);
@@ -59,13 +60,16 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
         public int getValue(){
             return value;
         }
+        public boolean buttonClicked(){
+            return buttonClicked;
+        }
 	
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
                     switch(e.getActionCommand()){
                         case "TRUE":
-                            System.out.println(answers[0][1]);
+                            //System.out.println(answers[0][1]);
                             house = (String)answers[0][1];
                             value = Integer.parseInt((String)answers[0][2]);
                             break;
@@ -75,12 +79,12 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
                             break;  
                     }
                          //System.out.println("VALUE = " + value);
-                           System.out.println("house" + " " + house);
+                           //System.out.println("house" + " " + house);
                         //this is inherited member variable from inherited parent class
 			
                         
 			buttonClicked = true;
-                        //getAnswer()[0] + " " + getAnswer()[1];
+                        
 		}
 	}
 }

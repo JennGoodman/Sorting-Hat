@@ -3,12 +3,17 @@ import javax.swing.JPanel;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Scanner;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
@@ -32,7 +37,7 @@ public class ParticipantQuestionPanel extends QuestionPanel {
 	private JSpinner yearSpinner;
 	private String participantData; //Uses this added to the results line for admin report
 
-	public ParticipantQuestionPanel() throws FileNotFoundException {
+	public ParticipantQuestionPanel() throws FileNotFoundException, IOException {
 		
 		//Set up panel structure and layout
 		setBackground(Color.BLACK);
@@ -120,6 +125,26 @@ public class ParticipantQuestionPanel extends QuestionPanel {
 		springLayout.putConstraint(SpringLayout.EAST, yearSpinner, -47, SpringLayout.EAST, this);
 		add(yearSpinner);
 		
+                BufferedImage bi = ImageIO.read(new File("hat_icon.png"));
+                
+		try {
+			bi = ImageIO.read(new File("hat_icon.png"));
+		} catch (IOException e) {
+			bi = null;
+			e.printStackTrace();
+		}
+		
+		JLabel picLabel = new JLabel(new ImageIcon(bi));
+		springLayout.putConstraint(SpringLayout.SOUTH, picLabel, -104, SpringLayout.NORTH, nameField);
+		springLayout.putConstraint(SpringLayout.EAST, picLabel, -90, SpringLayout.EAST, this);
+		add(picLabel);
+		
+		JLabel lblSortingHat = new JLabel("Sorting Hat");
+		springLayout.putConstraint(SpringLayout.SOUTH, lblSortingHat, -63, SpringLayout.NORTH, nameField);
+		springLayout.putConstraint(SpringLayout.EAST, lblSortingHat, 0, SpringLayout.EAST, submitButton);
+		lblSortingHat.setFont(new Font("Arial Black", Font.PLAIN, 16));
+		lblSortingHat.setForeground(Color.WHITE);
+		add(lblSortingHat);
 		
 	}
 

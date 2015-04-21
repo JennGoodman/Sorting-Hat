@@ -17,6 +17,7 @@ public class MultiChoicePanel extends QuestionPanel{
         private String house;
         private int value;
         private Object[][] answers;
+        private boolean buttonClicked;
 
 	public MultiChoicePanel(Question question, boolean specialQuestion){
 		
@@ -127,8 +128,15 @@ public class MultiChoicePanel extends QuestionPanel{
 		}
 	}
         
-            
-
+        public boolean buttonClicked(){
+            return buttonClicked;
+        }    
+        public String getHouse(){
+            return house;
+        }
+        public int getValue(){
+            return value;
+        }
 
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {

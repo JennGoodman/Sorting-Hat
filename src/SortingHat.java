@@ -11,6 +11,11 @@ public class SortingHat extends JFrame{
 	private String name;
 	private String country;
 	private String age;
+        private boolean buttonClicked;
+        TrueFalseQuestionPanel tfQuestionPanel;
+        MultiChoicePanel mcQuestionPanel;
+        ScaleQuestionPanel scQuestionPanel;
+        MultiChoicePanel spQuestionPanel; //special tie breaker
 	
 	public SortingHat() throws IOException{
 		//Setup JFrame
@@ -37,19 +42,17 @@ public class SortingHat extends JFrame{
 		while(participantPanel.buttonClicked==false){
 			if(cnt<1){
 				System.out.println(".");
-				cnt++;
-                                
+				cnt++;      
 			}
                         System.out.print("");
 		}
-                
-                
+ 
                 age = Integer.toString(participantPanel.getAge());
                 name = participantPanel.getName();
                 country = participantPanel.getCountry();
 
 		/*--------------Begin Quiz Questions-------------*/
-		System.out.println("TEST");
+		
 		Quiz quiz = new Quiz("questions.txt");
 		Question question = quiz.getNextQuestion();
                 question.setSelectedAnswer(name, 0);
@@ -59,60 +62,87 @@ public class SortingHat extends JFrame{
                 question.setSelectedAnswer(age, 0);
 		
                 question = quiz.getNextQuestion();
-                QuestionPanel questionPanel = null;
-		//while there are more questions
-                
-                
                 
 		while(question != null){
-			
-                    System.out.println("WHILE LOOP TEST");
+		 
                     int questionType = question.getType();
 			
 			//load question panel depending on type of question
 			
-			
 		switch (questionType) {
                    
                     case 3: // True/False
-				questionPanel = new TrueFalseQuestionPanel(question);
-				setContentPane(questionPanel);
-                                System.out.println("house" + " " + questionPanel.getHouse());
-                                 System.out.println("value" + " " + questionPanel.getValue());
-                                //System.out.println(questionPanel.getHouse() + " " + questionPanel.getValue());
-                                question.setSelectedAnswer(questionPanel.getHouse(), questionPanel.getValue());   
+				tfQuestionPanel = new TrueFalseQuestionPanel(question);
+				setContentPane(tfQuestionPanel);          
 	            break;
 	        case 4: // Multiple Choice
-	        	questionPanel = new MultiChoicePanel(question, false);
-	        	setContentPane(questionPanel);
+	        	mcQuestionPanel = new MultiChoicePanel(question, false);
+	        	setContentPane(mcQuestionPanel);
                         
 	            break;
 	        case 5: // Scale
-	        	questionPanel = new ScaleQuestionPanel(question);
-	        	setContentPane(questionPanel); 
+	        	scQuestionPanel = new ScaleQuestionPanel(question);
+	        	setContentPane(scQuestionPanel); 
 	            break;
 	        case 6: // Tiebreak multiple choice
-	        	questionPanel = new MultiChoicePanel(question, true);
-	        	setContentPane(questionPanel);
-                        System.out.println("OUT?");
+	        	spQuestionPanel = new MultiChoicePanel(question, true);
+	        	setContentPane(spQuestionPanel);  
 	            break;
 			}
 			revalidate(); //sets screen to this next question panel
 			
 			//waits for button to be clicked
 			cnt = 0;
-			while(questionPanel.buttonClicked == false){
-				//if(cnt<1){
-					System.out.print("");
-					//t++;
-				//}
+			while(buttonClicked == false){
+				switch(questionType){
+                                    case 3:
+                                        buttonClicked = tfQuestionPanel.buttonClicked();
+                                        break;
+                                    case 4:
+                                        buttonClicked = mcQuestionPanel.buttonClicked();
+                                        break;
+                                    case 5:
+                                        buttonClicked = scQuestionPanel.buttonClicked();
+                                        break;
+                                    case 6:
+                                        buttonClicked = spQuestionPanel.buttonClicked();
+                                        break;
+                                }
 			}
-			
+			buttonClicked = false; //resets buttonClicked boolean
+                        
+                        //saves answer depending on type of question
+                        switch(questionType){
+                                    case 3:
+                                        question.setSelectedAnswer(tfQuestionPanel.getHouse(), tfQuestionPanel.getValue());
+                                        break;
+                                    case 4:
+                                        question.setSelectedAnswer(mcQuestionPanel.getHouse(), mcQuestionPanel.getValue());
+                                        break;
+                                    case 5:
+                                        question.setSelectedAnswer(scQuestionPanel.getHouse(), scQuestionPanel.getValue());
+                                        break;
+                                    case 6:
+                                       question.setSelectedAnswer(spQuestionPanel.getHouse(), spQuestionPanel.getValue());
+                                        break;
+                                }
+                        
 			//checks for next question
 			question = quiz.getNextQuestion();
 		}
-		          String result = quiz.saveShowResults();
-                          System.out.println(result);
+		 String result = quiz.saveShowResults();
+                        
+                System.out.println(result);
+                          
+                ImageIcon icon = new ImageIcon("hat_icon.png",
+                                 "a hat");
+                          
+                setVisible(false);
+                JOptionPane optionPane = new JOptionPane();
+                optionPane.showMessageDialog(this,
+                 "You've been sorted into " + quiz.getWinner(), "You've been sorted!",
+                  JOptionPane.PLAIN_MESSAGE, icon);
+                System.exit(0);
 	}
 	
 	public static void main(String[] args) throws IOException{

@@ -17,6 +17,7 @@ public class ScaleQuestionPanel extends QuestionPanel{
         private int value;
         private Object[][] answers;
         JSlider slider;
+        private boolean buttonClicked;
 
 	public ScaleQuestionPanel(Question question){
 		//set up panel structure and layout
@@ -79,7 +80,18 @@ public class ScaleQuestionPanel extends QuestionPanel{
             answer[1] = value;
             return answer;
         }  
+        
+        public String getHouse(){
+            return house;
+        }
+        public int getValue(){
+            return value;
+        }
 	
+        public boolean buttonClicked(){
+            return buttonClicked;
+        }
+        
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			//this is inherited member variable from inherited parent class
