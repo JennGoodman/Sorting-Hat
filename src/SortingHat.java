@@ -77,10 +77,12 @@ public class SortingHat extends JFrame{
                     case 3: // True/False
 				questionPanel = new TrueFalseQuestionPanel(question);
 				setContentPane(questionPanel);
+                                //question.setSelectedAnswer(name, cnt);
 	            break;
 	        case 4: // Multiple Choice
 	        	questionPanel = new MultiChoicePanel(question, false);
 	        	setContentPane(questionPanel);
+                        
 	            break;
 	        case 5: // Scale
 	        	questionPanel = new ScaleQuestionPanel(question);
@@ -102,11 +104,12 @@ public class SortingHat extends JFrame{
 					//t++;
 				//}
 			}
-			
+			System.out.println(questionPanel.getAnswer()[0]);
 			//checks for next question
 			question = quiz.getNextQuestion();
 		}
-		
+		          String result = quiz.saveShowResults();
+                          System.out.println(result);
 	}
 	
 	public static void main(String[] args) throws IOException{
