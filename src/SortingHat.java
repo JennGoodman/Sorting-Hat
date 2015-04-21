@@ -53,12 +53,10 @@ public class SortingHat extends JFrame{
                 int cnt = 0;
                 while(quizStart==false && adminStart==false){
 			if(cnt<1){
-				System.out.println(".");
 				cnt++;      
 			}
-                        System.out.println(".");
+                        System.out.print("");
 		}
-                System.out.println("Made out of while loop");
                 
                 if(adminStart==true){
                     adminDialog();
@@ -67,10 +65,6 @@ public class SortingHat extends JFrame{
                     
                     
                 }
-                
-                
-                
-                
 		
 		//Set JFrame visible and add main panel
 		ParticipantQuestionPanel participantPanel = new ParticipantQuestionPanel();
@@ -184,9 +178,6 @@ public class SortingHat extends JFrame{
         
         public void adminDialog() throws IOException{
             Administrator admin = new Administrator("results.txt");
-            
-            System.out.println(admin.getResults());
-            
             setVisible(false);
             JOptionPane optionPane = new JOptionPane();
             optionPane.showMessageDialog(this,
@@ -199,12 +190,9 @@ public class SortingHat extends JFrame{
 		public void actionPerformed(ActionEvent e) {
                     switch(e.getActionCommand()){
                         case "Start Quiz":
-                            System.out.println("START QUIZ!!");
-                            
                             quizStart = true;
                             break;
                         case "Admin Options":
-                            System.out.println("START ADMIN!!");
                             adminStart = true;
                             break; 
                         case "Exit":
