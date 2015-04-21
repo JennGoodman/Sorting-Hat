@@ -63,7 +63,7 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
-                         switch(e.getActionCommand()){
+                    switch(e.getActionCommand()){
                         case "TRUE":
                             System.out.println(answers[0][1]);
                             house = (String)answers[0][1];
@@ -72,10 +72,7 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
                         case "FALSE":
                             house = (String)answers[1][1];
                             value = Integer.parseInt((String)answers[1][2]);
-                            break;
-                            
-                        
-                          
+                            break;  
                     }
                          System.out.println("VALUE = " + value);
                             System.out.println(house + " " + value);

@@ -8,11 +8,11 @@
 public class Question {
     
     // Fields //
-    private int qType;
+    private final int qType;
+    private final String question;
+    private final Object[][] answers;
     private String selectedAnswer;
     private Integer value;
-    private String question;
-    private Object[][] answers;
     
     // Constructors //
     
@@ -37,14 +37,13 @@ public class Question {
     }
     
     public Object[] getSelectedAnswer () {
-        Object[] temp = new Object[2];
-        temp[0] = selectedAnswer;
-        temp[1] = value;
+        Object[] temp = {selectedAnswer, value};
         return temp;
     }
     
     public void setSelectedAnswer (String answer, int value) {
-        selectedAnswer = answer;
+        System.out.println("Answer: " + answer + " Value: " + value);
+        this.selectedAnswer = answer;
         this.value = value;
     }
 }

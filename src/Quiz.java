@@ -26,17 +26,17 @@ public class Quiz {
         
         // Open File
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-            String foo;
-            String[] bar;
+            String line;
+            String[] elements;
             int rows = 0;
             Object[][] answers = new Object[0][0];
 
-            while ((foo = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 
-                bar = foo.split(",");
+                elements = line.split(",");
                 int mType = 0;
                 
-                switch (bar[0]) {
+                switch (elements[0]) {
                     case "1": // Short Answer
                         mType = 1;
                         break;
@@ -61,14 +61,14 @@ public class Quiz {
                 }
                 
                 if (rows > 0) {
-                    int max = bar.length;
+                    int max = elements.length;
                     int i = 2;
                     answers =  new Object[rows][3];
                     for (int j = 0 ; j < rows ; j++)
                         for (int k = 0; k < 3 ; k++)
-                            if (i < max) answers[j][k] = bar[i++];
+                            if (i < max) answers[j][k] = elements[i++];
                 }
-                questions.add(new Question(mType, bar[1], answers));
+                questions.add(new Question(mType, elements[1], answers));
             }
             reader.close();
         }
