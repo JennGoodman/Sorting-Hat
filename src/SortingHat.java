@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
  
 public class SortingHat extends JFrame{
 	private String name;
@@ -180,6 +181,7 @@ public class SortingHat extends JFrame{
             Administrator admin = new Administrator("results.txt");
             setVisible(false);
             JOptionPane optionPane = new JOptionPane();
+            javax.swing.UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Courier New", Font.PLAIN, 11))); 
             optionPane.showMessageDialog(this,
              admin.getResults(), "TEST RESULTS",
               JOptionPane.PLAIN_MESSAGE);
