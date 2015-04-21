@@ -77,7 +77,10 @@ public class SortingHat extends JFrame{
                     case 3: // True/False
 				questionPanel = new TrueFalseQuestionPanel(question);
 				setContentPane(questionPanel);
-                                //question.setSelectedAnswer(name, cnt);
+                                System.out.println("house" + " " + questionPanel.getHouse());
+                                 System.out.println("value" + " " + questionPanel.getValue());
+                                //System.out.println(questionPanel.getHouse() + " " + questionPanel.getValue());
+                                question.setSelectedAnswer(questionPanel.getHouse(), questionPanel.getValue());   
 	            break;
 	        case 4: // Multiple Choice
 	        	questionPanel = new MultiChoicePanel(question, false);
@@ -104,7 +107,7 @@ public class SortingHat extends JFrame{
 					//t++;
 				//}
 			}
-			System.out.println(questionPanel.getAnswer()[0]);
+			
 			//checks for next question
 			question = quiz.getNextQuestion();
 		}
