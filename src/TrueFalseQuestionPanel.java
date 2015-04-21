@@ -61,7 +61,7 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
-                         switch(e.getActionCommand()){
+                    switch(e.getActionCommand()){
                         case "TRUE":
                             house = (String)answers[0][1];
                             value = Integer.parseInt((String)answers[0][2]);
@@ -69,10 +69,7 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
                         case "FALSE":
                             house = (String)answers[1][1];
                             value = Integer.parseInt((String)answers[1][2]);
-                            break;
-                            
-                        
-                          
+                            break;  
                     }
 
                         //this is inherited member variable from inherited parent class
