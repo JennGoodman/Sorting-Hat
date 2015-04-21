@@ -49,6 +49,8 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
 		falseButton.addActionListener(new ButtonListener());
 		falseButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		add(falseButton);
+                
+                answers = question.getPossibleAnswers();
 	}
         
            public Object[] getAnswer(){
@@ -63,6 +65,7 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
 			
                          switch(e.getActionCommand()){
                         case "TRUE":
+                            System.out.println(answers[0][1]);
                             house = (String)answers[0][1];
                             value = Integer.parseInt((String)answers[0][2]);
                             break;
@@ -74,9 +77,10 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
                         
                           
                     }
-
+                         System.out.println("VALUE = " + value);
+                            System.out.println(house + " " + value);
                         //this is inherited member variable from inherited parent class
-			System.out.println("Clicked!");
+			
 			buttonClicked = true;
 		}
 	}
