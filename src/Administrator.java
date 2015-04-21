@@ -161,7 +161,10 @@ public class Administrator
     
     private int getAvgOneHouse(String house)
     {
-        return (int)((100 *getTotalOneHouse(house)/numParticipants) + 0.5);
+        if(numParticipants == 0)
+            return 0;
+        else  
+            return (int)((100 *getTotalOneHouse(house)/numParticipants) + 0.5);
     }
     
    /**
@@ -188,7 +191,11 @@ public class Administrator
             int currAge = Integer.parseInt(line[1]);
             sumAge += currAge;        
         }
-        this.avgAge = (int)sumAge/numParticipants;
+        
+        if(numParticipants == 0)
+            this.avgAge = 0;
+        else
+            this.avgAge = (int)sumAge/numParticipants;
     }
     
     /**
