@@ -142,7 +142,6 @@ public class MultiChoicePanel extends QuestionPanel{
 		public void actionPerformed(ActionEvent e) {
 			//this is inherited member variable from inherited parent class
 		
-                    
                     switch(e.getActionCommand()){
                         case "A":
                             house = (String)answers[0][1];
@@ -162,11 +161,7 @@ public class MultiChoicePanel extends QuestionPanel{
                             house = (String)answers[3][1];
                             value = Integer.parseInt((String)answers[3][2]);
                             break;  
-                          
                     }
-                    
-                    System.out.println(house + " " + value);
-                    
                     buttonClicked = true;
 		}
 	}
