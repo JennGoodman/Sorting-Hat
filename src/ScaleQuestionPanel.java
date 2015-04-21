@@ -39,6 +39,7 @@ public class ScaleQuestionPanel extends QuestionPanel{
 		
 		//Create JSlider using snap and painted texts and a tool tip text
 		slider = new JSlider();
+                slider.setOpaque(false);
 		springLayout.putConstraint(SpringLayout.WEST, slider, 34, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, slider, -184, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, slider, -35, SpringLayout.EAST, this);

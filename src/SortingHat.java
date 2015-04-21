@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 import javax.swing.*;
  
 public class SortingHat extends JFrame{
@@ -12,6 +13,13 @@ public class SortingHat extends JFrame{
 	private String country;
 	private String age;
         private boolean buttonClicked;
+        
+        //determines if "Start Quiz" or "Admin Options" button clicked
+        private boolean quizStart; 
+        private boolean adminStart;
+        
+        JPanel mainPanel;
+        JPanel adminPanel;
         TrueFalseQuestionPanel tfQuestionPanel;
         MultiChoicePanel mcQuestionPanel;
         ScaleQuestionPanel scQuestionPanel;
@@ -20,6 +28,7 @@ public class SortingHat extends JFrame{
 	public SortingHat() throws IOException{
 		//Setup JFrame
 		setName("Sorting Hat");
+                setTitle("Sorting Hat");
 		JMenuBar theMenuBar = new JMenuBar();
 		setJMenuBar(theMenuBar);
 		setPreferredSize(new Dimension(300, 500));
@@ -29,15 +38,47 @@ public class SortingHat extends JFrame{
 		
 		//Set up main content panel (which will change depending on what panel is called)
 		JPanel mainPanel = new JPanel();
+                //Add Start Quiz and Admin buttons
+                JButton startQuiz = new JButton("Start Quiz");
+		startQuiz.addActionListener(new ButtonListener());
+                mainPanel.add(startQuiz);
+                JButton admin = new JButton("Admin Options");
+                admin.addActionListener(new ButtonListener());
+		mainPanel.add(admin);
+                
 		setContentPane(mainPanel);
+                setVisible(true);
+                
+                //wait for either "Start Quiz" or "Admin" button to be clicked
+                int cnt = 0;
+                while(quizStart==false && adminStart==false){
+			if(cnt<1){
+				System.out.println(".");
+				cnt++;      
+			}
+                        System.out.println(".");
+		}
+                System.out.println("Made out of while loop");
+                
+                if(adminStart==true){
+                    adminDialog();
+                    setContentPane(adminPanel);
+                    setVisible(true);
+                    
+                    
+                }
+                
+                
+                
+                
 		
 		//Set JFrame visible and add main panel
 		ParticipantQuestionPanel participantPanel = new ParticipantQuestionPanel();
-		add(participantPanel);
+		setContentPane(participantPanel);
 		setVisible(true);
 		
 		//Waiting for submit button to be clicked
-		int cnt=0;
+		cnt=0;
                 
 		while(participantPanel.buttonClicked==false){
 			if(cnt<1){
@@ -143,6 +184,38 @@ public class SortingHat extends JFrame{
                  "You've been sorted into " + quiz.getWinner(), "You've been sorted!",
                   JOptionPane.PLAIN_MESSAGE, icon);
                 System.exit(0);
+	}
+        
+        public void adminDialog() throws IOException{
+            Administrator admin = new Administrator("results.txt");
+            
+            System.out.println(admin.getResults());
+            
+            setVisible(false);
+            JOptionPane optionPane = new JOptionPane();
+            optionPane.showMessageDialog(this,
+             admin.getResults(), "TEST RESULTS",
+              JOptionPane.PLAIN_MESSAGE);
+            System.exit(0);
+        }     
+        
+        private class ButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+                    switch(e.getActionCommand()){
+                        case "Start Quiz":
+                            System.out.println("START QUIZ!!");
+                            
+                            quizStart = true;
+                            break;
+                        case "Admin Options":
+                            System.out.println("START ADMIN!!");
+                            adminStart = true;
+                            break; 
+                        case "Exit":
+                            System.exit(0);
+                    }
+
+		}
 	}
 	
 	public static void main(String[] args) throws IOException{
