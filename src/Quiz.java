@@ -127,7 +127,7 @@ public class Quiz {
         
         // Append the line to the file
         try (FileWriter out = new FileWriter("results.txt", true)) {
-            String outString = str[0] + "," + str[1] + "," + str[2] + "," + g + "," + s + "," + r + "," + h;
+            String outString = str[0] + "," + str[1] + "," + str[2] + "," + g + "," + s + "," + r + "," + h + "\n";
             out.write(outString);
             out.flush();
             out.close();
