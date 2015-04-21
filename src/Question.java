@@ -8,11 +8,11 @@
 public class Question {
     
     // Fields //
-    private int qType;
+    private final int qType;
+    private final String question;
+    private final Object[][] answers;
     private String selectedAnswer;
     private Integer value;
-    private String question;
-    private Object[][] answers;
     
     // Constructors //
     
@@ -37,9 +37,7 @@ public class Question {
     }
     
     public Object[] getSelectedAnswer () {
-        Object[] temp = new Object[2];
-        temp[0] = selectedAnswer;
-        temp[1] = value;
+        Object[] temp = {selectedAnswer, value};
         return temp;
     }
     
