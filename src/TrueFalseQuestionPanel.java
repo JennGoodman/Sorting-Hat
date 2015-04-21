@@ -78,11 +78,7 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
                             value = Integer.parseInt((String)answers[1][2]);
                             break;  
                     }
-                         //System.out.println("VALUE = " + value);
-                           //System.out.println("house" + " " + house);
                         //this is inherited member variable from inherited parent class
-			
-                        
 			buttonClicked = true;
                         
 		}

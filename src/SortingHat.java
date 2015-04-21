@@ -41,10 +41,9 @@ public class SortingHat extends JFrame{
                 
 		while(participantPanel.buttonClicked==false){
 			if(cnt<1){
-				System.out.println(".");
-				cnt++;      
+				cnt++;   
 			}
-                        System.out.print("");
+                                System.out.print("");
 		}
  
                 age = Integer.toString(participantPanel.getAge());
@@ -130,9 +129,6 @@ public class SortingHat extends JFrame{
 			//checks for next question
 			question = quiz.getNextQuestion();
 		}
-		 String result = quiz.saveShowResults();
-                        
-                System.out.println(result);
                           
                 ImageIcon icon = new ImageIcon("hat_icon.png",
                                  "a hat");
@@ -140,7 +136,7 @@ public class SortingHat extends JFrame{
                 setVisible(false);
                 JOptionPane optionPane = new JOptionPane();
                 optionPane.showMessageDialog(this,
-                 "You've been sorted into " + quiz.getWinner(), "You've been sorted!",
+                 "You've been sorted into " + quiz.saveShowResults(), "You've been sorted!",
                   JOptionPane.PLAIN_MESSAGE, icon);
                 System.exit(0);
 	}

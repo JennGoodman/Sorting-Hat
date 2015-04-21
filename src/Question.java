@@ -42,7 +42,6 @@ public class Question {
     }
     
     public void setSelectedAnswer (String answer, int value) {
-        System.out.println("Answer: " + answer + " Value: " + value);
         this.selectedAnswer = answer;
         this.value = value;
     }
