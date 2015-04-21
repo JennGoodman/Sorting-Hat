@@ -53,12 +53,10 @@ public class SortingHat extends JFrame{
                 int cnt = 0;
                 while(quizStart==false && adminStart==false){
 			if(cnt<1){
-				System.out.println(".");
 				cnt++;      
 			}
-                        System.out.println(".");
+                        System.out.print("");
 		}
-                System.out.println("Made out of while loop");
                 
                 if(adminStart==true){
                     adminDialog();
@@ -67,10 +65,6 @@ public class SortingHat extends JFrame{
                     
                     
                 }
-                
-                
-                
-                
 		
 		//Set JFrame visible and add main panel
 		ParticipantQuestionPanel participantPanel = new ParticipantQuestionPanel();
