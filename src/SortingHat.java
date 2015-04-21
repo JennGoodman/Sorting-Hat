@@ -193,12 +193,9 @@ public class SortingHat extends JFrame{
 		public void actionPerformed(ActionEvent e) {
                     switch(e.getActionCommand()){
                         case "Start Quiz":
-                            System.out.println("START QUIZ!!");
-                            
                             quizStart = true;
                             break;
                         case "Admin Options":
-                            System.out.println("START ADMIN!!");
                             adminStart = true;
                             break; 
                         case "Exit":
