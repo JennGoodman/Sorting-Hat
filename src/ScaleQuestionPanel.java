@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 
 public class ScaleQuestionPanel extends QuestionPanel{
+        private String house;
+        private int value;
 
 	public ScaleQuestionPanel(Question question){
 		//set up panel structure and layout
@@ -66,6 +68,13 @@ public class ScaleQuestionPanel extends QuestionPanel{
 		springLayout.putConstraint(SpringLayout.EAST, scaleInstLabel, 0, SpringLayout.EAST, questionLabel);
 		add(scaleInstLabel);
 	}
+        
+        public Object[] getAnswer(){
+            Object[] answer = new Object[2];
+            answer[0] = house;
+            answer[1] = value;
+            return answer;
+        }  
 	
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {

@@ -14,6 +14,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 public class MultiChoicePanel extends QuestionPanel{
+        private String house;
+        private int value;
+        private Object[][] answers;
 
 	public MultiChoicePanel(Question question, boolean specialQuestion){
 		
@@ -66,7 +69,7 @@ public class MultiChoicePanel extends QuestionPanel{
 		add(dButton);
 		
 		//loads the possible answers from Question
-		Object[][] answers = question.getPossibleAnswers();
+		answers = question.getPossibleAnswers();
 		
 		//Answer A label
 		JLabel aLabel = new JLabel((String)answers[0][0]);
@@ -123,11 +126,44 @@ public class MultiChoicePanel extends QuestionPanel{
 			add(specialQuestionLabel);
 		}
 	}
+        
+        public Object[] getAnswer(){
+            Object[] answer = new Object[2];
+            answer[0] = house;
+            answer[1] = value;
+            return answer;
+        }    
+
 
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			//this is inherited member variable from inherited parent class
-		System.out.println("BUTTON CLICKED");	
+		
+                    
+                    switch(e.getActionCommand()){
+                        case "A":
+                            house = (String)answers[0][1];
+                            value = Integer.parseInt((String)answers[0][2]);
+                            break;
+                        case "B":
+                            house = (String)answers[1][1];
+                            value = Integer.parseInt((String)answers[1][2]);
+                            break;
+                            
+                        case "C":
+                            house = (String)answers[2][1];
+                            value = Integer.parseInt((String)answers[2][2]);
+                            break;
+                            
+                        case "D":
+                            house = (String)answers[3][1];
+                            value = Integer.parseInt((String)answers[3][2]);
+                            break;  
+                          
+                    }
+                    
+                    System.out.println(house + " " + value);
+                    
                     buttonClicked = true;
 		}
 	}
