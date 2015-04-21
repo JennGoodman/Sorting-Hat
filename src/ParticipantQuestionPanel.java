@@ -122,7 +122,7 @@ public class ParticipantQuestionPanel extends QuestionPanel {
 		
 		
 	}
-	
+
 	//Tell GUI program to change to next screen in SortingHat class
 	public boolean submitClicked(){
             System.out.println("BUTTON CLICKED");

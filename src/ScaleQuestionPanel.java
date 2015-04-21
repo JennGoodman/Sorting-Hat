@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 public class ScaleQuestionPanel extends QuestionPanel{
         private String house;
         private int value;
+        private Object[][] answers;
+        JSlider slider;
 
 	public ScaleQuestionPanel(Question question){
 		//set up panel structure and layout
@@ -35,7 +37,7 @@ public class ScaleQuestionPanel extends QuestionPanel{
 		add(questionLabel);
 		
 		//Create JSlider using snap and painted texts and a tool tip text
-		JSlider slider = new JSlider();
+		slider = new JSlider();
 		springLayout.putConstraint(SpringLayout.WEST, slider, 34, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, slider, -184, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, slider, -35, SpringLayout.EAST, this);
@@ -67,6 +69,8 @@ public class ScaleQuestionPanel extends QuestionPanel{
 		springLayout.putConstraint(SpringLayout.SOUTH, scaleInstLabel, 54, SpringLayout.SOUTH, questionLabel);
 		springLayout.putConstraint(SpringLayout.EAST, scaleInstLabel, 0, SpringLayout.EAST, questionLabel);
 		add(scaleInstLabel);
+                
+                answers = question.getPossibleAnswers();
 	}
         
         public Object[] getAnswer(){
@@ -79,7 +83,39 @@ public class ScaleQuestionPanel extends QuestionPanel{
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			//this is inherited member variable from inherited parent class
-			buttonClicked = true;
+			
+                        
+                        
+                        
+                        switch(slider.getValue()){
+                        case 1:
+                            house = (String)answers[0][1];
+                            value = Integer.parseInt((String)answers[0][2]);
+                            break;
+                        case 2:
+                            house = (String)answers[1][1];
+                            value = Integer.parseInt((String)answers[1][2]);
+                            break;
+                            
+                        case 3:
+                            house = (String)answers[2][1];
+                            value = Integer.parseInt((String)answers[2][2]);
+                            break;
+                            
+                        case 4:
+                            house = (String)answers[3][1];
+                            value = Integer.parseInt((String)answers[3][2]);
+                            break;  
+                            
+                        case 5:
+                            house = (String)answers[4][1];
+                            value = Integer.parseInt((String)answers[4][2]);
+                            break; 
+                        } 
+                        System.out.println(house + " " + value);
+                        buttonClicked = true;
 		}
+                    
+                        
 	}
 }

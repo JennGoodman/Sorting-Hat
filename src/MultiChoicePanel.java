@@ -127,12 +127,7 @@ public class MultiChoicePanel extends QuestionPanel{
 		}
 	}
         
-        public Object[] getAnswer(){
-            Object[] answer = new Object[2];
-            answer[0] = house;
-            answer[1] = value;
-            return answer;
-        }    
+            
 
 
 	private class ButtonListener implements ActionListener{
