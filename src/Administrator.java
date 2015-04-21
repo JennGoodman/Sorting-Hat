@@ -209,7 +209,10 @@ public class Administrator
         StringBuilder sb = new StringBuilder();
         Formatter fm = new Formatter(sb);
         ArrayList<Object[]> countryList = new ArrayList();
-
+        
+        if(numParticipants == 0)
+            return "N/A\n";
+        
         //build country list
         for(int i = 0; i < records.size(); i++)
         {
