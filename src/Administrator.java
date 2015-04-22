@@ -62,14 +62,14 @@ public class Administrator
         sb.append("Number of Participants Per House: \n\n");
         for(int i = 0; i < houseList.length; i++)
         {
-            fm.format("\t %-20s %4d \n", houseList[i], 
+            fm.format("%-20s %4d \n", houseList[i], 
                     getTotalOneHouse(houseList[i]));
         }
         sb.append("------------------------------------------------\n");
         sb.append("Percent of Average Per House: \n\n");
         for(int i = 0; i < houseList.length; i++)
         {
-            fm.format("\t %-20s %4d%% \n", houseList[i], 
+            fm.format("%-20s %4d%% \n", houseList[i], 
                     getAvgOneHouse(houseList[i]));
         }
         sb.append("------------------------------------------------\n");
@@ -259,7 +259,7 @@ public class Administrator
         for(int k = 0; k < countryList.size(); k++)
         {
             Object[] country = countryList.get(k);
-            fm.format("\t %-20s %4d \n", country[0], country[1]);
+            fm.format("%-20s %4d \n", country[0], country[1]);
         }
         fm.close();
         return sb.toString();
