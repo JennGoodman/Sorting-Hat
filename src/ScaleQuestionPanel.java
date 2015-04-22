@@ -11,14 +11,24 @@ import javax.swing.JSlider;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-
+/**
+ * ScaleQuestionPanel class
+ * Extends QuestionPanel
+ * @author Charlie Swing
+ */
 public class ScaleQuestionPanel extends QuestionPanel{
+        
+        //fields
         private String house;
         private int value;
         private Object[][] answers;
         JSlider slider;
         private boolean buttonClicked;
 
+        /**
+         * ScaleQuestion constructor
+         * @param question 
+         */
 	public ScaleQuestionPanel(Question question){
 		//set up panel structure and layout
 		setBackground(Color.BLACK);
@@ -75,6 +85,10 @@ public class ScaleQuestionPanel extends QuestionPanel{
                 answers = question.getPossibleAnswers();
 	}
         
+        /**
+         * Returns Object array containing answer
+         * @return 
+         */
         public Object[] getAnswer(){
             Object[] answer = new Object[2];
             answer[0] = house;
@@ -82,17 +96,33 @@ public class ScaleQuestionPanel extends QuestionPanel{
             return answer;
         }  
         
+        /**
+         * Returns house
+         * @return String
+         */
         public String getHouse(){
             return house;
         }
+        
+        /**
+         * Returns value of answer
+         * @return int
+         */
         public int getValue(){
             return value;
         }
 	
+        /**
+         * Returns flag if button clicked
+         * @return boolean
+         */
         public boolean buttonClicked(){
             return buttonClicked;
         }
         
+        /**
+         * Button Listener class that responds to button clicks
+         */
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			//this is inherited member variable from inherited parent class
@@ -124,7 +154,5 @@ public class ScaleQuestionPanel extends QuestionPanel{
                         } 
                         buttonClicked = true;
 		}
-                    
-                        
 	}
 }

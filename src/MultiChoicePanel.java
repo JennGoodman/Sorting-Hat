@@ -14,12 +14,26 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
+/**
+ * MultiChoicePanel Class
+ * 
+ * Class for Multiple Choice question JPanels
+ * Extends QuestionPanel
+ * @author Charlie Swing
+ */
 public class MultiChoicePanel extends QuestionPanel{
+        
+        //fields
         private String house;
         private int value;
         private Object[][] answers;
         private boolean buttonClicked;
 
+        /**
+         * MultiChoicePanel constructor
+         * @param question
+         * @param specialQuestion 
+         */
 	public MultiChoicePanel(Question question, boolean specialQuestion){
 		
 		//set up panel structure and layout
@@ -133,16 +147,31 @@ public class MultiChoicePanel extends QuestionPanel{
 		}
 	}
         
+        /**
+         * Returns the buttonClicked boolean flag
+         * @return boolean
+         */
         public boolean buttonClicked(){
             return buttonClicked;
-        }    
+        } 
+        /**
+         * Returns the house designated to answer
+         * @return String
+         */
         public String getHouse(){
             return house;
         }
+        /**
+         * Returns the value designated to the house in the answer
+         * @return int
+         */
         public int getValue(){
             return value;
         }
-
+        
+        /**
+         * Button Listener class that responds to button clicks
+         */
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			//this is inherited member variable from inherited parent class

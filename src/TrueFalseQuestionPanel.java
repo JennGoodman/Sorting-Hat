@@ -9,13 +9,22 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+/**
+ * TrueFalseQuestionPanel class
+ * @author Charlie Swing
+ */
 public class TrueFalseQuestionPanel extends QuestionPanel{
+        
+        //fields
         private int value;
         private String house;
         private Object[][] answers;
         private boolean buttonClicked;
         
+        /**
+         * TrueFalseQuestionPanel constructor
+         * @param question 
+         */
 	public TrueFalseQuestionPanel(Question question){
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(300,500));
@@ -54,16 +63,33 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
                 
 	}
         
+        /**
+         * Returns house
+         * @return String
+         */
         public String getHouse(){
             return house;
         }
+        
+        /**
+         * Returns value of answer
+         * @return int
+         */
         public int getValue(){
             return value;
         }
+        
+        /**
+         * Returns flag if button clicked
+         * @return boolean
+         */
         public boolean buttonClicked(){
             return buttonClicked;
         }
 	
+        /**
+         * Button Listener class that responds to button clicks
+         */
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
@@ -79,8 +105,7 @@ public class TrueFalseQuestionPanel extends QuestionPanel{
                             break;  
                     }
                         //this is inherited member variable from inherited parent class
-			buttonClicked = true;
-                        
+			buttonClicked = true; 
 		}
 	}
 }

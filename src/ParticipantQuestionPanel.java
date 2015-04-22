@@ -25,8 +25,14 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerListModel;
 
+/**
+ * ParticipantQuestionPanel class
+ * @author Charlie Swing
+ */
 public class ParticipantQuestionPanel extends QuestionPanel {
-	private JTextField nameField;
+	
+        //fields
+        private JTextField nameField;
 	private JComboBox<String> countriesBox;
 	private boolean submitClicked;
 	private String name;
@@ -37,6 +43,11 @@ public class ParticipantQuestionPanel extends QuestionPanel {
 	private JSpinner yearSpinner;
 	private String participantData; //Uses this added to the results line for admin report
 
+        /**
+         * ParicipantQuestionPanel constructor 
+         * @throws FileNotFoundException
+         * @throws IOException 
+         */
 	public ParticipantQuestionPanel() throws FileNotFoundException, IOException {
 		
 		//Set up panel structure and layout
@@ -148,11 +159,17 @@ public class ParticipantQuestionPanel extends QuestionPanel {
 		
 	}
 
-	//Tell GUI program to change to next screen in SortingHat class
+	/**
+         * Tell GUI program to change to next screen in SortingHat class
+         * @return boolean
+         */
 	public boolean submitClicked(){
 		return submitClicked;
 	}
 	
+        /**
+         * Button Listener class that responds to button clicks
+         */
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
                     
@@ -168,7 +185,13 @@ public class ParticipantQuestionPanel extends QuestionPanel {
 			buttonClicked= true; //this is inherited member variable from parent class
 		}
 	}
-	
+	/**
+         * Calculates age based on given date of birth
+         * @param year
+         * @param month
+         * @param day
+         * @return int age
+         */
 	public int calculateAge(int year, int month, int day){
 		
 		Calendar dob = Calendar.getInstance();  
@@ -184,6 +207,11 @@ public class ParticipantQuestionPanel extends QuestionPanel {
 		return age;
 	}
 	
+        /**
+         * Reads in countries.txt files to populate JSpinner menu box
+         * @return
+         * @throws FileNotFoundException 
+         */
 	public String[] countriesList() throws FileNotFoundException{
 		Scanner scr= new Scanner(new File("Countries.txt"));
 		
@@ -206,12 +234,27 @@ public class ParticipantQuestionPanel extends QuestionPanel {
 		scr.close();
 		return countries;
 	}
+        
+        /**
+         * Returns age
+         * @return int
+         */
         public int getAge(){
                 return age;
         }
+        
+        /**
+         * Returns country
+         * @return String
+         */
         public String getCountry(){
                 return country;
         }
+        
+        /**
+         * Returns name
+         * @return String
+         */
         public String getName(){
                 return name;
         }
