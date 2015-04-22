@@ -142,14 +142,6 @@ public class Quiz {
             }
         }
         
-        // Append the line to the file
-        try (FileWriter out = new FileWriter("results.txt", true)) {
-            String outString = str[0] + "," + str[1] + "," + str[2] + "," + g + "," + s + "," + r + "," + h + "\n";
-            out.write(outString);
-            out.flush();
-            out.close();
-        }
-        
         // Calculate Winner!
         String win;
         while ((win = winner()) == null) {
@@ -159,6 +151,14 @@ public class Quiz {
                 case "r": r++; break;
                 case "s": s++; break;
             }
+        }
+        
+        // Append the line to the file
+        try (FileWriter out = new FileWriter("results.txt", true)) {
+            String outString = str[0] + "," + str[1] + "," + str[2] + "," + g + "," + s + "," + r + "," + h + "\n";
+            out.write(outString);
+            out.flush();
+            out.close();
         }
         
         // Return winner string
