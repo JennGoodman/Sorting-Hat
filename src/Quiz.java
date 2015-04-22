@@ -12,15 +12,17 @@ import java.util.ArrayList;
  * @author Jenn Goodman
  */
 public class Quiz {
-    
-    // Fields //
-    
+
     private ArrayList<Question> questions = new ArrayList();
     private int currentQuestion = 0;
     private int g, h, r, s;
-
-    // Constructors //
     
+    /**
+     * Constructor
+     * 
+     * @param path to file containing questions to be loaded
+     * @throws IOException if file is not found
+     */
     Quiz (String path) throws IOException {
         g = h = r = s = 0;
         
@@ -31,6 +33,7 @@ public class Quiz {
             int rows = 0;
             Object[][] answers = new Object[0][0];
 
+            // Read File
             while ((line = reader.readLine()) != null) {
                 
                 elements = line.split(",");
@@ -59,7 +62,7 @@ public class Quiz {
                         rows = 4;
                         break;
                 }
-                
+                // Build answer if needed
                 if (rows > 0) {
                     int max = elements.length;
                     int i = 2;
@@ -68,23 +71,37 @@ public class Quiz {
                         for (int k = 0; k < 3 ; k++)
                             if (i < max) answers[j][k] = elements[i++];
                 }
+                // Create Object
                 questions.add(new Question(mType, elements[1], answers));
             }
+            // Close File
             reader.close();
         }
     }
     
-    // Methods //
-    
+    /**
+     * Returns a question object reference to the currently indexed question.
+     * @return Question Object in current position
+     */
     public Question getNextQuestion() {
         if (questions.size() == currentQuestion) return null;
         return (Question)questions.get(currentQuestion++);
     }
     
+    /**
+     * Resets the index of the question list to 0.
+     */
     public void resetCurrentQuestion () {
         currentQuestion = 0;
     }
     
+    /**
+     * Saves and returns the string of the house that the participant has been
+     * sorted into.
+     * 
+     * @return String of winning house
+     * @throws IOException 
+     */
     public String saveShowResults() throws IOException {
         String[] str = new String[3];
         Question q;
@@ -148,6 +165,12 @@ public class Quiz {
         return win;
     }
     
+    /**
+     * Calculates the house with the highest total and returns a string of the
+     * house name.
+     * 
+     * @return String of the highest house or null if a tie is found
+     */
     private String winner() {
         if (g > r && g > h && g > s){
             return "Gryffindor!";
