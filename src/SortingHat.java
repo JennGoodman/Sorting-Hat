@@ -1,12 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+import javax.imageio.ImageIO;
 
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
  
 public class SortingHat extends JFrame{
 	private String name;
@@ -24,8 +27,8 @@ public class SortingHat extends JFrame{
         MultiChoicePanel mcQuestionPanel;
         ScaleQuestionPanel scQuestionPanel;
         MultiChoicePanel spQuestionPanel; //special tie breaker
-	
-	public SortingHat() throws IOException{
+        
+        public SortingHat() throws IOException{
 		//Setup JFrame
 		setName("Sorting Hat");
                 setTitle("Sorting Hat");
@@ -35,17 +38,9 @@ public class SortingHat extends JFrame{
 		setSize(new Dimension(300,500));
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		//Set up main content panel (which will change depending on what panel is called)
-		JPanel mainPanel = new JPanel();
-                //Add Start Quiz and Admin buttons
-                JButton startQuiz = new JButton("Start Quiz");
-		startQuiz.addActionListener(new ButtonListener());
-                mainPanel.add(startQuiz);
-                JButton admin = new JButton("Admin Options");
-                admin.addActionListener(new ButtonListener());
-		mainPanel.add(admin);
-                
+
+                //uses mainPanel() method to build the main intro screen
+                JPanel mainPanel = mainPanel();
 		setContentPane(mainPanel);
                 setVisible(true);
                 
@@ -62,8 +57,7 @@ public class SortingHat extends JFrame{
                     adminDialog();
                     setContentPane(adminPanel);
                     setVisible(true);
-                    
-                    
+
                 }
 		
 		//Set JFrame visible and add main panel
@@ -176,10 +170,53 @@ public class SortingHat extends JFrame{
                 System.exit(0);
 	}
         
+        public JPanel mainPanel(){
+            JPanel mainPanel = new JPanel();
+            mainPanel.setBackground(Color.BLACK);
+            mainPanel.setPreferredSize(new Dimension(300,480));
+            SpringLayout springLayout = new SpringLayout();
+           mainPanel. setLayout(springLayout);
+
+            JLabel lblSortingHat = new JLabel("Sorting Hat");
+            lblSortingHat.setFont(new Font("Arial Black", Font.PLAIN, 16));
+            lblSortingHat.setForeground(Color.WHITE);
+            mainPanel.add(lblSortingHat);
+
+            JButton quizBtn = new JButton("Start Quiz");
+            quizBtn.addActionListener(new ButtonListener());
+            springLayout.putConstraint(SpringLayout.NORTH, quizBtn, 351, SpringLayout.NORTH, this);
+            springLayout.putConstraint(SpringLayout.WEST, quizBtn, 95, SpringLayout.WEST, this);
+            springLayout.putConstraint(SpringLayout.WEST, lblSortingHat, 0, SpringLayout.WEST, quizBtn);
+            springLayout.putConstraint(SpringLayout.SOUTH, lblSortingHat, -105, SpringLayout.NORTH, quizBtn);
+            mainPanel.add(quizBtn);
+
+            JButton adminBtn = new JButton("Admin Report");
+            adminBtn.addActionListener(new ButtonListener());
+            springLayout.putConstraint(SpringLayout.NORTH, adminBtn, 28, SpringLayout.SOUTH, quizBtn);
+            springLayout.putConstraint(SpringLayout.WEST, adminBtn, 83, SpringLayout.WEST, this);
+            mainPanel.add(adminBtn);
+
+            BufferedImage myPicture;
+            try {
+                    myPicture = ImageIO.read(new File("hat_icon.png"));
+            } catch (IOException e) {
+                    myPicture = null;
+                    e.printStackTrace();
+            }
+
+            JLabel label = new JLabel(new ImageIcon(myPicture));
+            springLayout.putConstraint(SpringLayout.NORTH, label, 80, SpringLayout.NORTH, this);
+            springLayout.putConstraint(SpringLayout.WEST, label, 82, SpringLayout.WEST, this);
+            mainPanel.add(label);
+            
+            return mainPanel;
+        }
+
         public void adminDialog() throws IOException{
             Administrator admin = new Administrator("results.txt");
             setVisible(false);
             JOptionPane optionPane = new JOptionPane();
+            javax.swing.UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Courier New", Font.PLAIN, 11))); 
             optionPane.showMessageDialog(this,
              admin.getResults(), "TEST RESULTS",
               JOptionPane.PLAIN_MESSAGE);
@@ -192,13 +229,12 @@ public class SortingHat extends JFrame{
                         case "Start Quiz":
                             quizStart = true;
                             break;
-                        case "Admin Options":
+                        case "Admin Report":
                             adminStart = true;
                             break; 
                         case "Exit":
                             System.exit(0);
                     }
-
 		}
 	}
 	
